@@ -10,6 +10,9 @@ var _screen_size : Vector2
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	_screen_size = get_viewport_rect().size
+	$EngineFlame.hide()
+	$TurningFlameRight.hide()
+	$TurningFlameLeft.hide()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -21,9 +24,16 @@ func _process(delta):
 
 func _rotate():
 	if Input.is_action_pressed("turn_right"):
+		$TurningFlameLeft.show()
 		rotate(_rotation_speed)
+	else:
+		$TurningFlameLeft.hide()
 	if Input.is_action_pressed("turn_left"):
+		$TurningFlameRight.show()
 		rotate(-_rotation_speed)
+	else:
+		$TurningFlameRight.hide()
+		
 
 
 func _setCurrentSpeed():
@@ -31,6 +41,10 @@ func _setCurrentSpeed():
 		_current_speed = min(_max_speed, _current_speed + 10)
 	if Input.is_action_pressed("decelerate"):
 		_current_speed = max(0, _current_speed - 2)
+	if _current_speed > 0:
+		$EngineFlame.show()
+	else:
+		$EngineFlame.hide()
 
 
 func _setPosition(delta):

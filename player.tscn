@@ -1,14 +1,35 @@
-[gd_scene load_steps=3 format=3 uid="uid://ccfltpvdy36o1"]
+[gd_scene load_steps=5 format=3 uid="uid://ccfltpvdy36o1"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_5tnop"]
 [ext_resource type="Texture2D" uid="uid://qpbrr55sq7s1" path="res://art/player/Ship_2_D_Small.png" id="1_ycxlr"]
+[ext_resource type="Texture2D" uid="uid://cnwsi8jos84nu" path="res://art/player/engine_flame.png" id="2_8xc6c"]
+[ext_resource type="Texture2D" uid="uid://dtb5d7wwgacar" path="res://art/player/turning_flame.png" id="3_spby3"]
 
 [node name="Player" type="Area2D"]
 script = ExtResource("1_5tnop")
 metadata/_edit_group_ = true
 
+[node name="EngineFlame" type="Sprite2D" parent="."]
+position = Vector2(0, 55)
+rotation = -1.5708
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("2_8xc6c")
+
+[node name="TurningFlameRight" type="Sprite2D" parent="."]
+position = Vector2(40, 50)
+rotation = -1.5708
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_spby3")
+
+[node name="TurningFlameLeft" type="Sprite2D" parent="."]
+position = Vector2(-40, 50)
+rotation = -1.5708
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_spby3")
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_ycxlr")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+visible = false
 polygon = PackedVector2Array(0, -47, 10, -38, 14, -22, 19, -22, 29, -3, 32, -1, 34, -11, 42, -11, 44, 4, 48, 8, 62, 43, 27, 41, 25, 33, 22, 37, 7, 38, 7, 41, 0, 48, -7, 41, -7, 37, -22, 37, -25, 33, -27, 40, -61, 43, -48, 7, -43, 5, -43, -10, -34, -10, -32, -1, -28, -5, -18, -22, -15, -22, -12, -35)
