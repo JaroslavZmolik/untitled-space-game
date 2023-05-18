@@ -1,5 +1,6 @@
 extends Area2D
 
+signal shot_laser
 
 var _rotation_speed := PI / 120.0
 var _max_speed := 400.0
@@ -20,6 +21,7 @@ func _process(delta):
 	_rotate()
 	_setCurrentSpeed()
 	_setPosition(delta)
+	_handleFire()
 
 
 func _rotate():
@@ -53,3 +55,8 @@ func _setPosition(delta):
 	position += velocity * delta
 	position.x = clamp(position.x, 0, _screen_size.x)
 	position.y = clamp(position.y, 0, _screen_size.y)
+	
+
+func _handleFire():
+	if Input.is_action_just_pressed("shoot_laser"):
+		shot_laser.emit()
