@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://ccv8kmah2uly4"]
+[gd_scene load_steps=6 format=3 uid="uid://ccv8kmah2uly4"]
 
 [ext_resource type="PackedScene" uid="uid://ccfltpvdy36o1" path="res://player.tscn" id="1_jcg64"]
 [ext_resource type="Texture2D" uid="uid://c3m5v3v4o2kpn" path="res://art/space/background.png" id="1_ucqf1"]
 [ext_resource type="Script" path="res://main.gd" id="1_v6it5"]
 [ext_resource type="PackedScene" uid="uid://dnrx4e1pxuptn" path="res://laser.tscn" id="3_24pnl"]
+[ext_resource type="PackedScene" uid="uid://dfr748ovhtbhi" path="res://enemy.tscn" id="5_00dah"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_v6it5")
@@ -19,5 +20,18 @@ centered = false
 position = Vector2(100, 540)
 rotation = 1.5708
 scale = Vector2(0.6, 0.6)
+
+[node name="Enemy" parent="." instance=ExtResource("5_00dah")]
+position = Vector2(880, 360)
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+visible = false
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2(1920, 1080)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+texture = ExtResource("1_ucqf1")
+centered = false
 
 [connection signal="shot_laser" from="Player" to="." method="_on_player_shot_laser"]

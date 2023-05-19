@@ -18,5 +18,5 @@ func _on_player_shot_laser():
 	laser.position = $Player.position
 	laser.rotation = $Player.rotation
 	# Move laser in front of the ship
-	laser.move_local_y(-30)	
+	laser.move_local_y(-30)
 	$Lasers.add_child(laser)
