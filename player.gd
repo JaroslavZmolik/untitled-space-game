@@ -2,9 +2,10 @@ extends Area2D
 
 signal shot_laser
 
+@export var current_speed := 0
+
 var _rotation_speed := PI / 120.0
 var _max_speed := 400.0
-var _current_speed := 0.0
 var _screen_size : Vector2
 
 
@@ -40,10 +41,10 @@ func _rotate():
 
 func _setCurrentSpeed():
 	if Input.is_action_pressed("accelerate"):
-		_current_speed = min(_max_speed, _current_speed + 10)
+		current_speed = min(_max_speed, current_speed + 10)
 	if Input.is_action_pressed("decelerate"):
-		_current_speed = max(0, _current_speed - 2)
-	if _current_speed > 0:
+		current_speed = max(0, current_speed - 2)
+	if current_speed > 0:
 		$EngineFlame.show()
 	else:
 		$EngineFlame.hide()
@@ -51,7 +52,7 @@ func _setCurrentSpeed():
 
 func _setPosition(delta):
 	var velocity := Vector2.from_angle(rotation - (PI / 2))
-	velocity = velocity.normalized() * _current_speed if velocity.length() > 0 else velocity
+	velocity = velocity.normalized() * current_speed if velocity.length() > 0 else velocity
 	position += velocity * delta
 	position.x = clamp(position.x, 0, _screen_size.x)
 	position.y = clamp(position.y, 0, _screen_size.y)

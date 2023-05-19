@@ -7,7 +7,7 @@
 radius = 3.0
 height = 34.0
 
-[node name="Laser" type="Area2D"]
+[node name="Laser" type="Area2D" groups=["lasers"]]
 script = ExtResource("1_s68pk")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
