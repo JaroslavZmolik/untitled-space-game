@@ -1,16 +1,19 @@
-[gd_scene load_steps=6 format=3 uid="uid://ccv8kmah2uly4"]
+[gd_scene load_steps=8 format=3 uid="uid://ccv8kmah2uly4"]
 
 [ext_resource type="PackedScene" uid="uid://ccfltpvdy36o1" path="res://player.tscn" id="1_jcg64"]
 [ext_resource type="Texture2D" uid="uid://c3m5v3v4o2kpn" path="res://art/space/background.png" id="1_ucqf1"]
 [ext_resource type="Script" path="res://main.gd" id="1_v6it5"]
 [ext_resource type="PackedScene" uid="uid://dnrx4e1pxuptn" path="res://laser.tscn" id="3_24pnl"]
 [ext_resource type="PackedScene" uid="uid://dfr748ovhtbhi" path="res://enemy.tscn" id="5_00dah"]
+[ext_resource type="Texture2D" uid="uid://dk7sn6kdiqfxl" path="res://art/space/Nebula Red.png" id="6_1xq4h"]
+[ext_resource type="Texture2D" uid="uid://b11iseq83d004" path="res://art/space/Stars Small_1.png" id="6_dg50g"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_v6it5")
 laser_scene = ExtResource("3_24pnl")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
 texture = ExtResource("1_ucqf1")
 centered = false
 
@@ -21,17 +24,37 @@ position = Vector2(100, 540)
 rotation = 1.5708
 scale = Vector2(0.6, 0.6)
 
+[node name="Camera2D" type="Camera2D" parent="Player"]
+
 [node name="Enemy" parent="." instance=ExtResource("5_00dah")]
 position = Vector2(880, 360)
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
-visible = false
 
-[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_mirroring = Vector2(1920, 1080)
+[node name="ParallaxStars" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.1, 0.1)
+motion_mirroring = Vector2(4096, 4096)
 
-[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
-texture = ExtResource("1_ucqf1")
+[node name="Stars" type="Sprite2D" parent="ParallaxBackground/ParallaxStars"]
+texture = ExtResource("6_dg50g")
+centered = false
+
+[node name="ParallaxNebula" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.2, 0.2)
+motion_mirroring = Vector2(4096, 4096)
+
+[node name="Nebula" type="Sprite2D" parent="ParallaxBackground/ParallaxNebula"]
+modulate = Color(1, 1, 1, 0.729412)
+texture = ExtResource("6_1xq4h")
+centered = false
+
+[node name="ParallaxStars2" type="ParallaxLayer" parent="ParallaxBackground"]
+modulate = Color(1, 1, 1, 0.862745)
+motion_scale = Vector2(0.3, 0.3)
+motion_mirroring = Vector2(4096, 4096)
+
+[node name="Stars" type="Sprite2D" parent="ParallaxBackground/ParallaxStars2"]
+texture = ExtResource("6_dg50g")
 centered = false
 
 [connection signal="shot_laser" from="Player" to="." method="_on_player_shot_laser"]

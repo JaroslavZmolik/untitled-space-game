@@ -54,8 +54,6 @@ func _setPosition(delta):
 	var velocity := Vector2.from_angle(rotation - (PI / 2))
 	velocity = velocity.normalized() * current_speed if velocity.length() > 0 else velocity
 	position += velocity * delta
-	position.x = clamp(position.x, 0, _screen_size.x)
-	position.y = clamp(position.y, 0, _screen_size.y)
 	
 
 func _handleFire():
