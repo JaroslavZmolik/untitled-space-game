@@ -31,29 +31,29 @@ position = Vector2(880, 360)
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
-[node name="ParallaxStars" type="ParallaxLayer" parent="ParallaxBackground"]
+[node name="BackgroundStars" type="ParallaxLayer" parent="ParallaxBackground"]
 motion_scale = Vector2(0.1, 0.1)
 motion_mirroring = Vector2(4096, 4096)
 
-[node name="Stars" type="Sprite2D" parent="ParallaxBackground/ParallaxStars"]
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/BackgroundStars"]
 texture = ExtResource("6_dg50g")
 centered = false
 
-[node name="ParallaxNebula" type="ParallaxLayer" parent="ParallaxBackground"]
+[node name="Nebula" type="ParallaxLayer" parent="ParallaxBackground"]
 motion_scale = Vector2(0.2, 0.2)
 motion_mirroring = Vector2(4096, 4096)
 
-[node name="Nebula" type="Sprite2D" parent="ParallaxBackground/ParallaxNebula"]
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Nebula"]
 modulate = Color(1, 1, 1, 0.729412)
 texture = ExtResource("6_1xq4h")
 centered = false
 
-[node name="ParallaxStars2" type="ParallaxLayer" parent="ParallaxBackground"]
+[node name="ForegroundStars" type="ParallaxLayer" parent="ParallaxBackground"]
 modulate = Color(1, 1, 1, 0.862745)
 motion_scale = Vector2(0.3, 0.3)
 motion_mirroring = Vector2(4096, 4096)
 
-[node name="Stars" type="Sprite2D" parent="ParallaxBackground/ParallaxStars2"]
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ForegroundStars"]
 texture = ExtResource("6_dg50g")
 centered = false
 

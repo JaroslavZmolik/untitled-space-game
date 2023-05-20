@@ -10,7 +10,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	var speed_multiplier = $Player.current_speed / 50 + 1.0
-	get_tree().call_group("lasers", "set_speed_multiplier", speed_multiplier)
+	get_tree().set_group("lasers", "speed_multiplier", speed_multiplier)
 
 
 func _on_player_shot_laser():
