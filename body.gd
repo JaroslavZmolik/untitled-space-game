@@ -7,7 +7,6 @@ extends Sprite2D
 func _ready():
 	var sprites = [sprite1, sprite2]
 	texture = sprites[randi() % sprites.size()]
-	print(texture)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

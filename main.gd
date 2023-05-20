@@ -1,10 +1,11 @@
 extends Node
 
 @export var laser_scene: PackedScene
+@export var enemy_scene: PackedScene
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	$EnemySpawnTimer.start()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -18,5 +19,17 @@ func _on_player_shot_laser():
 	laser.position = $Player.position
 	laser.rotation = $Player.rotation
 	# Move laser in front of the ship
-	laser.move_local_y(-30)
+	laser.move_local_y(-20)
 	$Lasers.add_child(laser)
+
+
+func _on_enemy_spawn_timer_timeout():
+	var enemy = enemy_scene.instantiate()
+	
+	$EnemyPath/EnemySpawnLocation.progress_ratio = randf()
+	enemy.position = $EnemyPath/EnemySpawnLocation.position
+	
+	var velocity = Vector2(randf_range(150.0, 250.0), 0.0)
+#	enemy.linear_velocity = velocity.rotated(direction)
+	
+	add_child(enemy)

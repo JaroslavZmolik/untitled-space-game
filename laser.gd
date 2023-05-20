@@ -4,8 +4,8 @@ extends Area2D
 var speed_multiplier = 1.0
 
 
-var _base_speed = 100
-var _max_speed = 450.0
+var _base_speed = 250
+var _max_speed = 850.0
 
 
 # Called when the node enters the scene tree for the first time.
