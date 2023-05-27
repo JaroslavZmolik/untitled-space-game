@@ -6,12 +6,10 @@ signal shot_laser
 
 var _rotation_speed := PI / 120.0
 var _max_speed := 400.0
-var _screen_size : Vector2
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	_screen_size = get_viewport_rect().size
 	$EngineFlame.hide()
 	$TurningFlameRight.hide()
 	$TurningFlameLeft.hide()
