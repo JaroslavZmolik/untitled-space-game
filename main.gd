@@ -12,10 +12,10 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
+func _process(delta):
 	var speed_multiplier = $Player.current_speed / 50 + 1.0
 	get_tree().set_group("lasers", "speed_multiplier", speed_multiplier)
-	get_tree().call_group("enemies", "move_toward_player", $Player.position)
+#	get_tree().call_group("enemies", "move_toward_player", $Player.global_position, delta)
 
 func _on_player_shot_laser():
 	var laser = laser_scene.instantiate()
@@ -29,4 +29,5 @@ func _on_player_shot_laser():
 func _on_enemy_spawn_timer_timeout():
 	var enemy = enemy_scene.instantiate()
 	enemy.position = $Player.position + Vector2(_enemy_spawn_safe_distance, 0).rotated(randf_range(0, 2 * PI))
+	enemy.target = $Player;
 	add_child.call_deferred(enemy)
