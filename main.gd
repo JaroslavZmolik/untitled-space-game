@@ -3,8 +3,11 @@ extends Node
 @export var laser_scene: PackedScene
 @export var enemy_scene: PackedScene
 
+var _enemy_spawn_safe_distance
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	_enemy_spawn_safe_distance = get_window().get_size_with_decorations().x + 100
 	$EnemySpawnTimer.start()
 
 
@@ -25,11 +28,7 @@ func _on_player_shot_laser():
 
 func _on_enemy_spawn_timer_timeout():
 	var enemy = enemy_scene.instantiate()
-	
-	$EnemyPath/EnemySpawnLocation.progress_ratio = randf()
-	enemy.position = $EnemyPath/EnemySpawnLocation.position
-	
-	var velocity = Vector2(randf_range(150.0, 250.0), 0.0)
-#	enemy.linear_velocity = velocity.rotated(direction)
+
+	enemy.position = $Player.position + Vector2(_enemy_spawn_safe_distance, 0).rotated(randf_range(0, 2 * PI))
 	
 	add_child(enemy)
